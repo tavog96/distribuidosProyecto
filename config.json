@@ -1,0 +1,1 @@
+{ "resourceDirectoryFileName": "filesDir.json", "resourcePathRoot": "./files/", "cacheDirectoryFileName": "cacheDir.json", "cachePathRoot": "./cache/", "localHostIP": "192.168.0.1", "appTcpPort": 5000 }
