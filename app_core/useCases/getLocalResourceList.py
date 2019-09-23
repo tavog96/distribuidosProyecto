@@ -2,7 +2,7 @@ from ..interfaces.resourceDirectoryManagerInterface import resourceDirectoryMana
 
 class getLocalResourceList:
 
-    resourceDirectoryManager = resourceDirectoryManagerInterface()
+    resourceDirectoryManager = resourceDirectoryManagerInterface(False, False,False)
 
     def __init__(self, resourceDirectoryManagerParam):
         super().__init__()

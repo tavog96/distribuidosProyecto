@@ -28,7 +28,7 @@ class versionController:
         return scannedFile
 
     def setNewUID (self, scannedFile):
-        scannedFile['uid']=str(uuid.uuid1)
+        scannedFile['uid']=str(uuid.uuid1())
         return scannedFile
 
     def determinateLastVersion (self, scannedFileInfo, savedFileInfo):

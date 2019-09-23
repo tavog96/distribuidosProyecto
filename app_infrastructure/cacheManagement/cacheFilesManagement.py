@@ -24,8 +24,8 @@ class cacheFilesManager:
             counter =1
             while counter <= fileInfo['chunks']:
                 chunkFileName = self.cacheRootPath+fileInfo['uid']+'_'+str(counter)+self.cacheFileExtension
-                if os.path.exists():
-                    os.remove("demofile.txt")
+                if os.path.exists(chunkFileName):
+                    os.remove(chunkFileName)
                 else:
                     print("The file does not exist") 
                 counter = counter+1

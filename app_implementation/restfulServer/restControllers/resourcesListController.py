@@ -19,5 +19,5 @@ class resourcesListController(Resource):
     def get(self):
         response = self.useCase.execute()
         if (response!=False):
-            return json.dumps(response)
+            return response
         abort(500, message="Server can't proceed with this request")

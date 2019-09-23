@@ -4,8 +4,8 @@ from ..interfaces.cacheFilesManagerInterface import cacheFilesManagerInterface
 
 class getLocalResourceChunk:
 
-    cacheDirectoryManager = cacheDirectoryManagerInterface()
-    cacheFilesManager = cacheFilesManagerInterface()
+    cacheDirectoryManager = cacheDirectoryManagerInterface(False)
+    cacheFilesManager = cacheFilesManagerInterface(False, False)
     resourceUID = False
     chunkNumber = 0
 
