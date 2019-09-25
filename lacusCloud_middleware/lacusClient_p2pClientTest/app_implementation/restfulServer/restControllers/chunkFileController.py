@@ -23,7 +23,8 @@ class chunkFileController(Resource):
         try:
             chunkNumberParam = int(chunkNumber)
         except:
-            abort(500, message="A correct numeric Chunk index must be provided")
+            abort(400, message="A correct numeric Chunk index must be provided")
+            return
         if (chunkNumberParam != False):
             self.useCase = getLocalResourceChunk(self.cacheDirManager, self.cacheFileManager, uidParam, chunkNumberParam)
             response = self.useCase.execute()

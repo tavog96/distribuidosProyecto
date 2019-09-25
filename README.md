@@ -1,17 +1,49 @@
 # distribuidosProyecto
 
-El proyecto se basa en 2 ejecutables independientes que se deben ejecutar de forma simultanea para hacer trabajar un nodo... aun estoy en la investigacion de como lograr abrir 2 consolas desde un mismo ejecutable, y no tener que ejecuta los archivos (cliente, servidor) por separado.
+
 
 ## Getting Started
 
-El archivo de prueba ejecutable y funcional a esta version es el main.py
-Este levantara el servidor escuchando en el puerto 5000
+    La macro-estructura del proyecto se va a dividir en diferente subproyectos catalogados en las siguientes categorias:
+
+    -   Ejecutables:
+        -   LacusCloud_consoleClientTest
+        -   LacusCloud_nodeServer (middleware)
+
+    -   No ejecutables:
+        -   lacusCloud_client (middleware)
+        -   lacusCloud_common (middleware)
+
+    -   Ejecutables de prueba que no aportan nada al proyecto final :v
+        -   lacusCloud_p2pClientTest
+
+    *middleware significa que en un ambiente real, el usuario final nunca tendria acceso a dicho codigo
+
+
+    Cada uno de los subproyectos siguen un patron de diseño definido de la siguiente manera:
+
+    ![alt text](https://github.com/tavog96/distribuidosProyecto/tree/master/doc/scheme.png)
+
+    -   No se utilizaran entidades hasta el momento, ya que es mas facil tratar los datos como arrays json. hasta que se implemente la autenticacion de usuarios, no veo necesario estos.
+
+    -   Core: Definie toda la logica de negocio, en termino de este proyectos, seria logica de procesamiento de datos de recursos, por ejemplo, evitar que se descargue un recurso que ya existe localmente, es ignorante de los terminos de infraestructura.
+        -   Use Case: Define todas y cada una de las solicitudes que debe procesar la aplicacion, desde retornar una lista de recursos, hasta compartir uno de estos. Este debe ser un codigo reutilizable, fijo, y de cierta manera stateless, de manera que la implementacion puede instanciar cuantas Use Cases como quiera, y cada Use Case represente unn tipo de solicitud unico y especifico.
+        -   Interfaces: Conocidos como repositorios, son interfaces o esqueletos de los diferentes metodos o servicios que la logica puede acceder de los servicios de infraestructura.
+        -   Helpers: Comunmente conocida como logica de definicion, o logica adicional, es por ejemplo, funciones para determeninar la igualdad de 2 recursos, y si un mismo recurso se repite en un lista.
+    -   Infrastructure: Compuesta por la logica de acceso a los servicios externos a la logica, como acceso a archivos, a otras APIs web, bases de datos, etc.
+        -   Controller: Conocido como Implementacion de Repositorio, constituye la implementacion de un servicio completo de acceso a datos externos, ya sea una API, un archivo, una coleccion de recursos, etc. Normalmente heredan de las Interfaces del core, para asegurarse de que se cubran todos los metodos y funciones requeridas por la logica.
+        -   Controller Logic: Logica adicional utilizada por los Controller, por ejemplo, para trasfornar la data recibida a un formato estandar para la logica, para evitar recibir data corrupta, erronea, incongruente.
+    -   Implementation: Seccion unica de los proyectos ejecutables, implementa la logica como parte de una interfaz de acceso, bien local (Consola), bien interfaz web (API), para que el usuario acceda a estos procesos, ademas, define (o lee de un archivo, o ambas) las variables de configuracion del entorno de ejecucion, como por ejemplo: El path de una carpeta de descargas, la IP del servidor local, la IP del servidor remoto, (en el caso del servidor) si se debe comportar como simple nodo, o como tracker central, etc.
+        -   Runtime config: Logica que ayuda a definir, guardar y compartir entre procesos locales, las variables de configuracion del entorno de ejecucion, ya sea a travez de un archivo, de variable global, etc. Dandole posibilidad al usuario de modificar estas variables.
+        -   Access Interface: Procedimiento de ejecucion de la interfaz implementada para recibir solicitudes del usuario, ya sea por una interfaz grafica, una consola, una restAPI, un WebService, una App Android, loque sea :v.
+        -   Use Case: Uso adecuado de los Use Case disponibles en el Core, uso desechable, para cada una de las solicitudes recibidas por el Access Interface, y segun las variables del Runtime Config (Las variables de configuracion de entorno de ejecucion pueden modificar el comportamiento de la implementacion).
+        -   Controllers: Uso de desechable, inicializados y configurados para cada una de las solicitudes que el Acces Interface asi requiera, los Controllers deben ser inicializados acuerdo a los parametros del Runtime config, osea, por ejemplo, configurar la direccion de la carpeta de desacaga para el cotrolador que se encargue de manipular estos archivos. Una vez inicializados, se le asginan los controllers ya configurados a los Use Cases, para que estos los utilicen en vez de las Interfaces. De manera que la capa de Implementacion siempre tenga control de que Logica y que Controllers se utilizan en cada solicitud que se procese.
+        
+
 
 ### Prerequisites
 
 require [Flask-RESTful](https://flask-restful.readthedocs.io/en/latest/) - The web framework used as server
-Aun estoy en la investigacion para instalar esto como parte de los ejecutables del servidor.
-Ya que la libreria proporciona un scrip de instalacion, queda nada mas comprobar si esta instalada y sino se debe ejecutar dicho script.
 
 ### Installing
 
@@ -19,7 +51,7 @@ Easy peasy
 
 ## Running the tests
 
-Execute main.py.
+Ejecucion de prueba en la direccion: lacusCloud_middleware/lacusClient_p2pClientTest/main.py
 Then just go http://localhost:5000/resource
 
 ### Break down into end to end tests

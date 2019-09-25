@@ -40,11 +40,16 @@ class resourceDirectoryManager:
         savedFilesDir = self.jsonSaver.openJson()
         return savedFilesDir
 
-    def setResourceInfo (self, resourceInfo):
+    def setResourceInfo (self, resourceInfoParam):
+        resourceInfo =  {}
+        resourceInfo['name'] = resourceInfoParam['name']
+        resourceInfo['size'] = resourceInfoParam['size']
+        resourceInfo['lastmodificate'] = resourceInfoParam['lastmodificate']
+        resourceInfo['uid'] = resourceInfoParam['uid']
         savedFilesDir = self.jsonSaver.openJson()
         indexCounter = 0
         flagFound = False
-        while indexCounter < len(savedFilesDir):
+        while (indexCounter < len(savedFilesDir) and not flagFound):
             if (savedFilesDir[indexCounter]['name']==resourceInfo['name']):
                 savedFilesDir[indexCounter] = resourceInfo
                 flagFound=True

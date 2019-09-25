@@ -1,8 +1,8 @@
-
+from app_core.interfaces.restClientControllerInterface import restClientControllerInterface
 import requests
 import json
 
-class restClientController:
+class restClientController (restClientControllerInterface):
 
     defaultPort = 50505
     remoteHostIP = ''
