@@ -6,18 +6,20 @@
 
 La macro-estructura del proyecto se va a dividir en diferente subproyectos catalogados en las siguientes categorias:
 
--   Ejecutables:
+Ejecutables:
 -   LacusCloud_consoleClientTest
 -   LacusCloud_nodeServer (middleware)
 
--   No ejecutables:
+No ejecutables:
 -   lacusCloud_client (middleware)
 -   lacusCloud_common (middleware)
 
--   Ejecutables de prueba que no aportan nada al proyecto final :v
+Ejecutables de prueba que no aportan nada al proyecto final :v
 -   lacusCloud_p2pClientTest
 
 middleware significa que en un ambiente real, el usuario final nunca tendria acceso a dicho codigo
+
+La idea es que un usuario externo pueda importar el codigo del lacusCloud_client, y asi acceder de forma transparente a los recursos de la red de nodos con solo configurar la IP del Servidor-Tracker.
 
 
 Cada uno de los subproyectos siguen un patron de diseño definido de la siguiente manera:
