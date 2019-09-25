@@ -22,7 +22,7 @@ middleware significa que en un ambiente real, el usuario final nunca tendria acc
 
 Cada uno de los subproyectos siguen un patron de diseño definido de la siguiente manera:
 
-![alt text](https://github.com/tavog96/distribuidosProyecto/tree/master/doc/scheme.png)
+![alt text](https://raw.githubusercontent.com/tavog96/distribuidosProyecto/master/doc/scheme.PNG)
 
 -   No se utilizaran entidades hasta el momento, ya que es mas facil tratar los datos como arrays json. hasta que se implemente la autenticacion de usuarios, no veo necesario estos.
 
