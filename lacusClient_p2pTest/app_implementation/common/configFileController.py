@@ -1,4 +1,4 @@
-from app_infrastructure.jsonFileController.jsonSave import jsonSaver
+from ...app_infrastructure.jsonFileController.jsonSave import jsonSaver
 
 class configFileController:
     resourceDirectoryFileName = 'filesDir.json'
@@ -16,7 +16,7 @@ class configFileController:
         configFile = self.jsonController.openJson()
         if (configFile == False):
             self.setDefaultConfigFile()
-            self.scanConfigFile()
+            configFile = self.jsonController.openJson()
         else:
             self.resourceDirectoryFileName = configFile['resourceDirectoryFileName']
             self.resourcePathRoot = configFile['resourcePathRoot']

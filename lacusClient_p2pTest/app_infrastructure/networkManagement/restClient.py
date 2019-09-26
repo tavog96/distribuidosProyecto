@@ -1,4 +1,4 @@
-from app_core.interfaces.restClientControllerInterface import restClientControllerInterface
+from ...app_core.interfaces.restClientControllerInterface import restClientControllerInterface
 import requests
 import json
 

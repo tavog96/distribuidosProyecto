@@ -1,7 +1,7 @@
-from app_core.useCases.gelLocalResourceCacheInfo import getLocalResourceCacheInfo
-from app_infrastructure.resourceManagement.resourceDirectoryManagement import resourceDirectoryManager
-from app_infrastructure.cacheManagement.cacheDirectoryManagement import cacheDirectoryManager
-from app_infrastructure.cacheManagement.cacheFilesManagement import cacheFilesManager
+from ....app_core.useCases.gelLocalResourceCacheInfo import getLocalResourceCacheInfo
+from ....app_infrastructure.resourceManagement.resourceDirectoryManagement import resourceDirectoryManager
+from ....app_infrastructure.cacheManagement.cacheDirectoryManagement import cacheDirectoryManager
+from ....app_infrastructure.cacheManagement.cacheFilesManagement import cacheFilesManager
 from ...common.configFileController import configFileController
 from flask_restful import reqparse, abort, Resource
 import json

@@ -1,5 +1,5 @@
-from app_core.useCases.getLocalResourceList import getLocalResourceList
-from app_infrastructure.resourceManagement.resourceDirectoryManagement import resourceDirectoryManager
+from ....app_core.useCases.getLocalResourceList import getLocalResourceList
+from ....app_infrastructure.resourceManagement.resourceDirectoryManagement import resourceDirectoryManager
 from ...common.configFileController import configFileController
 from flask_restful import reqparse, abort, Resource
 import json

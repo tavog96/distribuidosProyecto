@@ -1,6 +1,6 @@
-from app_core.useCases.getLocalResourceChunk import getLocalResourceChunk
-from app_infrastructure.cacheManagement.cacheFilesManagement import cacheFilesManager
-from app_infrastructure.cacheManagement.cacheDirectoryManagement import cacheDirectoryManager
+from ....app_core.useCases.getLocalResourceChunk import getLocalResourceChunk
+from ....app_infrastructure.cacheManagement.cacheFilesManagement import cacheFilesManager
+from ....app_infrastructure.cacheManagement.cacheDirectoryManagement import cacheDirectoryManager
 from ...common.configFileController import configFileController
 from flask_restful import reqparse, abort, Resource
 from flask import Flask
