@@ -69,12 +69,12 @@ class cacheFilesManager:
         if not os.path.exists(path):
             return False
 
-        file2read = open(path)
+        file2read = open(path, 'rb')
 
         while (chunkCounter<=chunks):
             bytes2Read = cachedFileInfo['chunkSize']
             if (chunkCounter==chunks):
-                bytes2Read = cachedFileInfo['size']%cachedFileInfo['chunkSize']
+                bytes2Read = int(cachedFileInfo['size']%cachedFileInfo['chunkSize'])
             chunkContent = file2read.read(bytes2Read)
             filename = cachedFileInfo['uid']+'_'+str(chunkCounter)+self.cacheFileExtension
             self.writeChunkContent(chunkContent, filename)

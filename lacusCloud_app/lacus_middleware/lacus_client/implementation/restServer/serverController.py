@@ -18,5 +18,6 @@ class ClientController:
 
 
     def startServer (self):
+        self.configFile.scanConfigFile()
         self.app.run(port=self.configFile.appTcpPort, debug=False, host=self.configFile.localHostIP)
 
