@@ -18,5 +18,5 @@ class ClientController:
 
 
     def startServer (self):
-        self.app.run(port=self.configFile.appTcpPort, debug=False, )
+        self.app.run(port=self.configFile.appTcpPort, debug=False, host=self.configFile.localHostIP)
 

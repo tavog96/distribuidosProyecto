@@ -28,5 +28,5 @@ class serverController:
 
 
     def startServer (self):
-        self.app.run(port=self.configFile.appTcpPort)
+        self.app.run(port=self.configFile.appTcpPort, host=self.configFile.localHostIP)
 
