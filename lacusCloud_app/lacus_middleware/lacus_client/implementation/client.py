@@ -32,6 +32,7 @@ class Client:
         userInfo['password']=password
         self.sessionToken = restClient.postLoginUser(userInfo)
         if (self.sessionToken != False):
+            print(self.sessionToken)
             return True
         return False
 

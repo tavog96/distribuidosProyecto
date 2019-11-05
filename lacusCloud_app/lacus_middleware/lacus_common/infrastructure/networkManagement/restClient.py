@@ -91,7 +91,7 @@ class restClientController ():
         try:
             response = requests.post(url, data=UserInfo)
             if response.ok:
-                responseContent = json.loads(response.content)
+                responseContent = json.loads(json.loads(response.content))
                 return responseContent
             return False
         except:
