@@ -41,7 +41,7 @@ class AddResourceCon(Resource):
             self.authUseCase.execute()
             if (self.authUseCase.response):
 
-                self.useCase.parameters(args['name'], int(args['size']), int(args['lastmodificate']), args['ip'])
+                self.useCase.parameters(args['name'], float(args['size']), float(args['lastmodificate']), args['ip'])
                 self.useCase.execute(False)
                 if (self.useCase.response != False):
                     return json.dumps(self.useCase.response), 201
