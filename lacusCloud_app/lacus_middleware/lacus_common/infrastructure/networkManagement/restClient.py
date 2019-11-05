@@ -39,7 +39,7 @@ class restClientController ():
     def postAddNewResource (self, fileInfo, token):
         url = "http://"+self.remoteHostIP+':'+str(self.defaultPort)+'/resource/add'
         try:
-            response = requests.post(url, data=fileInfo)
+            response = requests.post(url, data=fileInfo, params=self.transforTokenToTuples(token))
             if response.ok:
                 responseContent = json.loads(response.content)
                 return responseContent
@@ -48,13 +48,13 @@ class restClientController ():
             return False
 
     # To connect to node
-    def postUploadNewResource (self, fileInfo, clientToken):
+    def postUploadNewResource (self, fileInfo, remoteHost):
         host = []
         host.append(remoteHost)
         fileInfo['host'] = json.dumps(host)
         try:
             url = "http://"+self.remoteHostIP+':'+str(self.defaultPort)+'/uploadResource'
-            response = requests.post(url, data=fileInfo, params=self.transforTokenToTuples(clientToken), timeout = 1)
+            response = requests.post(url, data=fileInfo, timeout = 1)
             if response.ok:
                 return True
             return False
