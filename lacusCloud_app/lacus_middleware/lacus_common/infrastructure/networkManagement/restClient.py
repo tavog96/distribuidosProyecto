@@ -29,7 +29,7 @@ class restClientController ():
         try:
             response = requests.get(url, params=self.transforTokenToTuples(clientToken))
             if response.ok:
-                responseContent = json.loads(response.content)
+                responseContent = json.loads(json.loads(response.content))
                 return responseContent
             return False
         except:
