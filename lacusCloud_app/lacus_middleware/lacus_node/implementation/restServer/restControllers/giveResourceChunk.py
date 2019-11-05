@@ -2,7 +2,7 @@ from .....lacus_common.core.useCases.streamResource import StreamResource
 from .....lacus_common.infrastructure.cacheManagement.cacheFilesManagement import cacheFilesManager
 from .....lacus_common.infrastructure.configFileController.configFileController import configFileController
 from flask_restful import reqparse, abort, Resource
-import json
+from flask import Flask
 
 class GiveResourceChunk(Resource):
 
@@ -20,5 +20,8 @@ class GiveResourceChunk(Resource):
         self.useCase.execute()
         response = self.useCase.response
         if (response!=False):
-            return response
+            flaskApp = Flask(__name__)
+            byteResponse = flaskApp.make_response(response)
+            byteResponse.headers['content-type'] = 'application/octet-stream'
+            return byteResponse
         abort(400, message="Resource not found")
