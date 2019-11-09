@@ -32,6 +32,7 @@ class UploadResourceOnNode(Resource):
 
     def post(self):
         args = self.parser.parse_args()
+        print (args['host'])
         self.useCase.parameters(args['uid'], int(args['chunks']), json.loads(args['host']))
         self.useCase.execute(True)
         return json.dumps(True), 201
