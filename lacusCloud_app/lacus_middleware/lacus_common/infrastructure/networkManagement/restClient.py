@@ -125,7 +125,7 @@ class restClientController ():
         try:
             response = requests.get(url, timeout = 0.5)
             if response.ok:
-                return json.loads(response.content)
+                return json.loads(json.loads(response.content))
             return False
         except:
             return False

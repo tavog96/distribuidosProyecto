@@ -34,8 +34,7 @@ while (not exitflag):
     if (command == 'list'):
         resources = clientController.getResourceList()
         if (resources!= False):
-            for resource in resources:
-                print (resource)
+            print (str(resources))
         else:
             print ("Error executing command")
 
