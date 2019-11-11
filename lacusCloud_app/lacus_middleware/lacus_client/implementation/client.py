@@ -68,6 +68,8 @@ class Client:
         if (fileInfo!=False):
             cacheManager = cacheFilesManager(self.configFile.cachePathRoot, self.configFile.cachePathRoot)
             useCaseRestClient = restClientController(self.configFile.appTcpPort, self.trackerIP)
+            print (json.dumps(fileInfo))
+            print(str(fileInfo))
             self.downloader = DownloadResource(cacheManager, useCaseRestClient)
             print(json.dumps(fileInfo['host']))
             self.downloader.parameters(fileInfo['uid'], fileInfo['chunks'], fileInfo['host'], fileInfo['name'])

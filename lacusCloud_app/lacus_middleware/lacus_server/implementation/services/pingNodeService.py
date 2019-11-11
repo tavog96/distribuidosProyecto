@@ -3,6 +3,7 @@ from ...infrastructure.nodeMangement.nodeDirectoryManagement import NodeDirector
 from ....lacus_common.infrastructure.networkManagement.restClient import restClientController
 from ....lacus_common.infrastructure.configFileController.configFileController import configFileController
 from ...core.useCases.pingNode import pingNode
+import json
 
 
 class PingNodeService(Service):
@@ -18,6 +19,8 @@ class PingNodeService(Service):
     def task(self):
         nodes = self.nodeManager.getAllNodes()
         nodes2delete = []
+        print (json.dumps(nodes))
+        print (str(nodes))
         for node in nodes:
             restController = restClientController(self.configFile.appTcpPort, node['ip'])
             print('sending ping to '+  node['ip'])
