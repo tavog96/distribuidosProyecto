@@ -58,6 +58,7 @@ class cacheFilesManager:
             chunkContent = self.getCacheFile(fileInfo['uid'], chunkCounter)
             if (chunkContent!=False):
                 file2write.write(chunkContent)
+            chunkCounter = (chunkCounter+1)
         file2write.close()
         return fileName
 

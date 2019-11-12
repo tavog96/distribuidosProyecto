@@ -19,8 +19,6 @@ class PingNodeService(Service):
     def task(self):
         nodes = self.nodeManager.getAllNodes()
         nodes2delete = []
-        print (json.dumps(nodes))
-        print (str(nodes))
         for node in nodes:
             restController = restClientController(self.configFile.appTcpPort, node['ip'])
             print('sending ping to '+  node['ip'])

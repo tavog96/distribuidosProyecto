@@ -5,6 +5,7 @@ from ...lacus_common.infrastructure.cacheManagement.cacheFilesManagement import 
 from ...lacus_common.core.useCases.downloadResource import DownloadResource
 from .restServer.serverController import ClientController
 from threading import Thread
+import time
 import json
 
 class Client:
@@ -68,12 +69,12 @@ class Client:
         if (fileInfo!=False):
             cacheManager = cacheFilesManager(self.configFile.cachePathRoot, self.configFile.cachePathRoot)
             useCaseRestClient = restClientController(self.configFile.appTcpPort, self.trackerIP)
-            print (json.dumps(fileInfo))
-            print(str(fileInfo))
             self.downloader = DownloadResource(cacheManager, useCaseRestClient)
-            print(json.dumps(fileInfo['host']))
             self.downloader.parameters(fileInfo['uid'], fileInfo['chunks'], fileInfo['host'], fileInfo['name'])
             self.downloader.execute(True)
+            while (self.downloader.done != True):
+                print ("Downloading: "+str(self.downloader.progress))
+                time.sleep(0.5)
             return True
         return False
 
