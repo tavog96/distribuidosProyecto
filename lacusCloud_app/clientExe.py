@@ -3,11 +3,20 @@ from lacus_middleware.lacus_client.implementation.client import Client
 
 ipLocal = input('set the local IP for the client:')
 ipTracker = input('set the tracker server IP location:')
+nodeMode = input('Is this client working as a node (TRUE / FALSE):')
 
+clientController = False
 
-clientController = Client(ipLocal, ipTracker)
+if (nodeMode == 'true' or nodeMode=='True' or nodeMode == 'TRUE'):
+    clientController = Client(ipLocal, ipTracker, True)
+else:
+    clientController = Client(ipLocal, ipTracker)
 
 exitflag = False
+
+if (clientController == False):
+    exitflag = True
+    print("Error: Unable to start client, nodeMode not inserted properly.")
 
 while (not exitflag):
     command = input('select a command:')

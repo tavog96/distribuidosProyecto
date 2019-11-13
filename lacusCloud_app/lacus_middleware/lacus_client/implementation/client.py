@@ -4,6 +4,8 @@ from ..infrastructure.fileManagement.fileManager import FileManager
 from ...lacus_common.infrastructure.cacheManagement.cacheFilesManagement import cacheFilesManager
 from ...lacus_common.core.useCases.downloadResource import DownloadResource
 from .restServer.serverController import ClientController
+from ...lacus_node.implementation.restServer.serverController import NodeController
+from ...lacus_node.implementation.registerNode import RegisterNode
 from threading import Thread
 import time
 import json
@@ -15,17 +17,22 @@ class Client:
     configFile = configFileController()
     downloader = DownloadResource(False, False)
     clientServer = ClientController()
+    nodeServer = NodeController()
     clientServerThread = Thread(target=False)
 
 
-    def __init__(self, localHostIP, trackerIP):
+    def __init__(self, localHostIP, trackerIP, nodeMode = False):
         super().__init__()
         self.configFile.scanConfigFile()
         self.trackerIP = trackerIP
         self.configFile.localHostIP = localHostIP
         self.configFile.setDefaultConfigFile()
-        self.clientServerThread = Thread(target=self.startServer)
-        self.clientServerThread.start()
+        if (nodeMode == False):
+            self.clientServerThread = Thread(target=self.startServer)
+            self.clientServerThread.start()
+        else:
+            self.clientServerThread = Thread(target=self.startNode)
+            self.clientServerThread.start()
 
     def login(self, user, password):
         restClient = restClientController(self.configFile.appTcpPort, self.trackerIP)
@@ -80,6 +87,13 @@ class Client:
 
     def startServer (self):
         self.clientServer.startServer()
+
+    def startNode (self):
+        self.nodeServer.startServer()
+        time.sleep(2)
+        if (self.trackerIP!=False):
+            if (RegisterNode(self.trackerIP) == False):
+                print("No se ha podido conectar al tracker como nodo")
 
 
 

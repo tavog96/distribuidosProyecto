@@ -4,11 +4,17 @@ from .restControllers.nodePing import NodePing
 from .restControllers.uploadResourceOnNode import UploadResourceOnNode
 from flask import Flask
 from flask_restful import Api
+import logging
 
 class NodeController:
 
     app = Flask(__name__)
     api = Api(app)
+
+    import logging
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
+    
 
     configFile = configFileController() 
 

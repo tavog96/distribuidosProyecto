@@ -2,11 +2,16 @@ from ....lacus_common.infrastructure.configFileController.configFileController i
 from .restControllers.giveResourceChunk import GiveResourceChunk
 from flask import Flask
 from flask_restful import Api
+import logging
 
 class ClientController:
 
     app = Flask(__name__)
     api = Api(app)
+
+    import logging
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
 
     configFile = configFileController() 
 
